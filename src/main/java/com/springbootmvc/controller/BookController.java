@@ -53,9 +53,7 @@ public class BookController {
 	
 	@RequestMapping(value ="/saveBook")
 	public String saveEmployee(@ModelAttribute("book") BookVO book, BindingResult result) throws Exception {
-		System.out.println(book.toString());
 		Book bookPojo = BookConverter.convertToPojo(book);
-		System.out.println("after conversion " + bookPojo.toString());
 		bookService.save(bookPojo);
 		return "redirect:/books/getAllBooks";
 	}
@@ -66,7 +64,6 @@ public class BookController {
 		List<Book> books = bookService.list();
 		model.put("subjectsList", getSubjects());
 		model.put("booksList", books);
-		System.out.println(books);
 		return new ModelAndView("books", model);
 	}
 
